@@ -2,14 +2,12 @@
 #task1{
     display: flex;
     justify-content: center;
+    margin-bottom: 40px;
 }
 #task1 td{
     border: 1px solid black;
     padding: 30px;
     text-align: center;
-}
-#green{
-    word-break: break-all;
 }
 #task1 table {
     table-layout: fixed;
@@ -27,11 +25,36 @@
 /* END: Task 1 Styles */
 
 /* START: Task 2 Styles */
-
+#notificationBad{
+    border: 1px solid grey;
+    color: white;
+    width: 240px;
+    background-color: rgb(252, 142, 161);
+    padding: 7px 10px;
+    margin-bottom: 10px;
+}
+#notificationGood{
+    color: white;
+    width: 240px;
+    background-color: green;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+}
+#task2{
+    padding-left: calc(50% - 111px);
+}
+#task2 input::placeholder {
+    font: 8px sans-serif;
+}
+#task2 input{
+    font: 16px sans-serif;
+    outline: none;
+    border: 1px solid black;
+}
+#task2 .fail{
+    border: 0.5px solid red;
+}
 /* END: Task 2 Styles */
-
-
-
 
 /* START: Task 3 Styles */
 

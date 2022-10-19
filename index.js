@@ -93,14 +93,61 @@ specialCell.addEventListener('click', (e) => {
 /* END TASK 1 */
 
 /* START TASK 2: Your code goes here */
+let button = document.getElementById('button')
+let form = document.getElementById("myForm");
+let input = document.getElementById('type-text')
+let regExp = new RegExp('^\\+380[0-9]{9}$', 'g')
+let flag = false;
 
-
-
-
-
+form.addEventListener('submit', handleForm);
+function handleForm(event){
+    event.preventDefault(); 
+}
+input.addEventListener('input', () => {
+    validateInput()
+}); 
+function validateInput(){
+    let text = input.value
+    flag = regExp.test(text);
+    if (flag){
+         successe()
+    } else {
+        fail()
+    }
+}
+function fail(){
+    button.setAttribute('disabled', 'true');
+    input.setAttribute('class', 'fail')
+    let div = document.getElementById('target');
+    if (div){
+        div.innerText = 'Type number does not follow format +380*********'
+        div.setAttribute('id', 'notificationBad')
+    }
+}
+function successe(){
+    button.removeAttribute('disabled');
+    input.removeAttribute('class');
+}
+function submitToServer(){
+    try{
+        if (flag){
+            let div = document.getElementById('target');
+            if (div){
+                div.innerText = 'Data was successfully sent'
+                div.setAttribute('id', 'notificationGood')
+            } else {
+                let div = document.getElementById('notificationBad');
+                div.innerText = 'Data was successfully sent'
+                div.setAttribute('id', 'notificationGood')
+            }
+        } else {
+            validateInput()
+        }
+    } catch(e){
+        console.log('I will work on it');
+    }
+}  
 /* END TASK 2 */
-
-
 
 /* START TASK 3: Your code goes here */
 
