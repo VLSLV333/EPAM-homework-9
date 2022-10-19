@@ -1,10 +1,106 @@
 /* START TASK 1: Your code goes here */
-
+let allTableCells = document.getElementsByTagName('td')
+let firstColumnCells = document.getElementsByClassName('first-column')
+let specialCell = document.getElementById('green')
+let table = document.getElementById('table')
+function makeCellsGreen(){
+    for (cell of allTableCells){
+        let currentClass = cell.className
+        if (!currentClass.includes('yellow') && !currentClass.includes('blue')){
+            cell.className = `${currentClass} green`
+        }
+        if (specialCell.className.includes('blue')){
+            specialCell.className = 'second-row blue'
+        } else {
+            specialCell.className = 'second-row green'
+        }
+    }
+    table.className = 'green'
+}
+function makeCellsYellow(e) {
+    let element = e.target
+    let currentClass = element.className
+    if (!currentClass.includes('first-column')){
+        element.className = `${currentClass} yellow`
+    }
+}
+function makeRowBlue(e){
+    let element = e.target
+    let currentClass = element.className
+    if (currentClass.includes('first-row')){
+        let firstRowCells = document.getElementsByClassName('first-row')
+        let flag = true;
+        for (let firstRowCell of firstRowCells){
+            let currentClass = firstRowCell.className
+            if (currentClass.includes('yellow')){
+                flag = false;
+                break;
+            }
+        }
+        for (let firstRowCell of firstRowCells){
+            let currentClass = firstRowCell.className
+            if (flag){
+                firstRowCell.className = `${currentClass} blue`
+            }
+        }
+    } else if (currentClass.includes('second-row')){
+        let secondRowCells = document.getElementsByClassName('second-row')
+        let flag = true;
+        for (let secondRowCell of secondRowCells){
+            let currentClass = secondRowCell.className
+            if (currentClass.includes('yellow')){
+                flag = false;
+                break;
+            }
+        }
+        for (let secondRowCell of secondRowCells){
+            let currentClass = secondRowCell.className
+            if (flag){
+                secondRowCell.className = `${currentClass} blue`
+            }
+        }
+    } else if (currentClass.includes('third-row')){
+        let thirdRowCells = document.getElementsByClassName('third-row')
+        let flag = true;
+        for (let thirdRowCell of thirdRowCells){
+            let currentClass = thirdRowCell.className
+            if (currentClass.includes('yellow')){
+                flag = false;
+                break;
+            }
+        }
+        for (let thirdRowCell of thirdRowCells){
+            let currentClass = thirdRowCell.className
+            if (flag){
+                thirdRowCell.className = `${currentClass} blue`
+            }
+        }
+    }
+}
+for (let cell of allTableCells) {
+    cell.addEventListener('click', (e) => {
+        makeCellsYellow(e)
+    });
+}
+for (let firstcells of firstColumnCells) {
+    firstcells.addEventListener('click', (e) => {
+        makeRowBlue(e)
+    });
+}
+specialCell.addEventListener('click', (e) => {
+    makeCellsGreen(e)
+});
 /* END TASK 1 */
 
 /* START TASK 2: Your code goes here */
 
+
+
+
+
 /* END TASK 2 */
+
+
 
 /* START TASK 3: Your code goes here */
 
