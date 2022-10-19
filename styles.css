@@ -1,4 +1,7 @@
 /* START: Task 1 Styles */
+body{
+    box-sizing: border-box;
+}
 #task1{
     display: flex;
     justify-content: center;
@@ -42,6 +45,7 @@
 }
 #task2{
     padding-left: calc(50% - 111px);
+    margin-bottom: 40px;
 }
 #task2 input::placeholder {
     font: 8px sans-serif;
@@ -57,5 +61,43 @@
 /* END: Task 2 Styles */
 
 /* START: Task 3 Styles */
-
+#task3{
+    display: flex;
+    justify-content: center;
+}
+#court{
+    width: 598px;
+    height: 328px;
+    border: 1px solid black;
+    background-image: url(/assets/court2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+#ball{
+    width: 40px;
+    height: 40px;
+    background-image: url(/assets/ball.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+}
+#teamA{
+    background-color: red;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 114px;
+    left: 32px;
+}
+#teamB{
+    background-color: black;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 100px;
+    left: 550px;
+}
 /* END: Task 3 Styles */

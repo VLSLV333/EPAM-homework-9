@@ -150,5 +150,51 @@ function submitToServer(){
 /* END TASK 2 */
 
 /* START TASK 3: Your code goes here */
+let court = document.getElementById('court')
+let ball = document.getElementById('ball')
+function getCourtCoordinatesx(){
+    court = document.getElementById('court')
+    let courtCoordinates = court.getBoundingClientRect();
+    let xOfCourt = courtCoordinates.x;
+    return xOfCourt;
+}
+function getCourtCoordinatesy(){
+    court = document.getElementById('court')
+    let courtCoordinates = court.getBoundingClientRect();
+    let yOfCourt = courtCoordinates.y;
+    return yOfCourt;
+}
+function getBallCoordinatesy(){
+    ball = document.getElementById('ball')
+    let ballCoordinates = ball.getBoundingClientRect();
+    let yOfBall = ballCoordinates.y;
+    return yOfBall;
+}
+function getBallCoordinatesx(){
+    ball = document.getElementById('ball')
+    let ballCoordinates = ball.getBoundingClientRect();
+    let xOfBall = ballCoordinates.x;
+    return xOfBall;
+}
+court.addEventListener("click", function(){
+    let courtXCoordinate = getCourtCoordinatesx();
+    let courtYCoordinate = getCourtCoordinatesy();
+    let top = obj.y - courtYCoordinate - 20 + 'px';
+    ball.style.top = top
+    let left = obj.x - courtXCoordinate - 20 + 'px';
+    ball.style.left = left
+    let ballYCoordinate = getBallCoordinatesy();
+    let ballXCoordinate = getBallCoordinatesx();
+    // if ( ball coordinate and teamA or teamB coorditanes are the same +- given sizes of scoring square = fire CUSTOM event!)
+});
+let obj = {
+    x : 0,
+    y : 0
+}
+window.addEventListener('mousemove', function(e){
+    obj.x = e.x;
+    obj.y = e.y
+})
+
 
 /* END TASK 3 */
