@@ -4,7 +4,7 @@ let firstColumnCells = document.getElementsByClassName('first-column')
 let specialCell = document.getElementById('green')
 let table = document.getElementById('table')
 function makeCellsGreen(){
-    for (cell of allTableCells){
+    for (let cell of allTableCells){
         let currentClass = cell.className
         if (!currentClass.includes('yellow') && !currentClass.includes('blue')){
             cell.className = `${currentClass} green`
@@ -94,7 +94,7 @@ specialCell.addEventListener('click', (e) => {
 
 /* START TASK 2: Your code goes here */
 let button = document.getElementById('button')
-let form = document.getElementById("myForm");
+let form = document.getElementById('myForm');
 let input = document.getElementById('type-text')
 let regExp = new RegExp('^\\+380[0-9]{9}$', 'g')
 let flag = false;
@@ -152,13 +152,16 @@ function submitToServer(){
 /* START TASK 3: Your code goes here */
 let court = document.getElementById('court')
 let ball = document.getElementById('ball')
+let ballXYsize = 20;
 let teamAHoop = document.getElementById('teamA')
 let teamBHoop = document.getElementById('teamB')
+let hoopXYsize = 15;
 let teamAScore = document.getElementById('teamAscore')
 let teamBScore = document.getElementById('teamBscore')
 let teamAScoreText = teamAScore.innerText
 let teamBScoreText = teamBScore.innerText
 let scoreboard = document.getElementById('scoreboard')
+let seconds3 = 3000;
 function getCoordinatesX(elem){
     let coordinates = elem.getBoundingClientRect();
     let xOfelem = coordinates.x;
@@ -169,27 +172,27 @@ function getCoordinatesY(elem){
     let xOfelem = coordinates.y;
     return xOfelem
 }
-court.addEventListener("click", function(){
+court.addEventListener('click', function(){
     let courtXCoordinate = getCoordinatesX(court);
     let courtYCoordinate = getCoordinatesY(court);
-    let top = obj.y - courtYCoordinate - 20 + 'px';
+    let top = obj.y - courtYCoordinate - ballXYsize + 'px';
     ball.style.top = top
-    let left = obj.x - courtXCoordinate - 20 + 'px';
+    let left = obj.x - courtXCoordinate - ballXYsize + 'px';
     ball.style.left = left
-    let teamAHoopYCoordinate = getCoordinatesY(teamAHoop);
-    let teamAHoopXCoordinate = getCoordinatesX(teamAHoop);
-    let teamBHoopYCoordinate = getCoordinatesY(teamBHoop);
-    let teamBHoopXCoordinate = getCoordinatesX(teamBHoop);
+    let tAHYC = getCoordinatesY(teamAHoop);
+    let tAHXC = getCoordinatesX(teamAHoop);
+    let tBHYC = getCoordinatesY(teamBHoop);
+    let tBHXC = getCoordinatesX(teamBHoop);
     teamAScoreText = teamAScore.innerText
     teamBScoreText = teamBScore.innerText
-    if (obj.y >= teamAHoopYCoordinate && obj.y <= teamAHoopYCoordinate + 15 && obj.x >= teamAHoopXCoordinate && obj.x <= teamAHoopXCoordinate + 15){
+    if (obj.y >= tAHYC && obj.y <= tAHYC + hoopXYsize && obj.x >= tAHXC && obj.x <= tAHXC + hoopXYsize){
         changeBScore(1)
         showWhoScored('B','red')
-        setTimeout(hideScore, 3000)
-    } else if (obj.y >= teamBHoopYCoordinate && obj.y <= teamBHoopYCoordinate + 15 && obj.x >= teamBHoopXCoordinate && obj.x <= teamBHoopXCoordinate + 15){
+        setTimeout(hideScore, seconds3)
+    } else if (obj.y >= tBHYC && obj.y <= tBHYC + hoopXYsize && obj.x >= tBHXC && obj.x <= tBHXC + hoopXYsize){
         changeAScore(1)
         showWhoScored('A', 'azure')
-        setTimeout(hideScore, 3000)
+        setTimeout(hideScore, seconds3)
     }
 });
 let obj = {

@@ -72,9 +72,8 @@ body{
     width: 600px;
 }
 #court{
-    width: 598px;
-    height: 328px;
-    border: 1px solid black;
+    width: 600px;
+    height: 330px;
     background-image: url(/assets/court2.png);
     background-size: contain;
     background-repeat: no-repeat;
