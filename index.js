@@ -152,40 +152,45 @@ function submitToServer(){
 /* START TASK 3: Your code goes here */
 let court = document.getElementById('court')
 let ball = document.getElementById('ball')
-function getCourtCoordinatesx(){
-    court = document.getElementById('court')
-    let courtCoordinates = court.getBoundingClientRect();
-    let xOfCourt = courtCoordinates.x;
-    return xOfCourt;
+let teamAHoop = document.getElementById('teamA')
+let teamBHoop = document.getElementById('teamB')
+let teamAScore = document.getElementById('teamAscore')
+let teamBScore = document.getElementById('teamBscore')
+let teamAScoreText = teamAScore.innerText
+let teamBScoreText = teamBScore.innerText
+let scoreboard = document.getElementById('scoreboard')
+function getCoordinatesX(elem){
+    let coordinates = elem.getBoundingClientRect();
+    let xOfelem = coordinates.x;
+    return xOfelem
 }
-function getCourtCoordinatesy(){
-    court = document.getElementById('court')
-    let courtCoordinates = court.getBoundingClientRect();
-    let yOfCourt = courtCoordinates.y;
-    return yOfCourt;
-}
-function getBallCoordinatesy(){
-    ball = document.getElementById('ball')
-    let ballCoordinates = ball.getBoundingClientRect();
-    let yOfBall = ballCoordinates.y;
-    return yOfBall;
-}
-function getBallCoordinatesx(){
-    ball = document.getElementById('ball')
-    let ballCoordinates = ball.getBoundingClientRect();
-    let xOfBall = ballCoordinates.x;
-    return xOfBall;
+function getCoordinatesY(elem){
+    let coordinates = elem.getBoundingClientRect();
+    let xOfelem = coordinates.y;
+    return xOfelem
 }
 court.addEventListener("click", function(){
-    let courtXCoordinate = getCourtCoordinatesx();
-    let courtYCoordinate = getCourtCoordinatesy();
+    let courtXCoordinate = getCoordinatesX(court);
+    let courtYCoordinate = getCoordinatesY(court);
     let top = obj.y - courtYCoordinate - 20 + 'px';
     ball.style.top = top
     let left = obj.x - courtXCoordinate - 20 + 'px';
     ball.style.left = left
-    let ballYCoordinate = getBallCoordinatesy();
-    let ballXCoordinate = getBallCoordinatesx();
-    // if ( ball coordinate and teamA or teamB coorditanes are the same +- given sizes of scoring square = fire CUSTOM event!)
+    let teamAHoopYCoordinate = getCoordinatesY(teamAHoop);
+    let teamAHoopXCoordinate = getCoordinatesX(teamAHoop);
+    let teamBHoopYCoordinate = getCoordinatesY(teamBHoop);
+    let teamBHoopXCoordinate = getCoordinatesX(teamBHoop);
+    teamAScoreText = teamAScore.innerText
+    teamBScoreText = teamBScore.innerText
+    if (obj.y >= teamAHoopYCoordinate && obj.y <= teamAHoopYCoordinate + 15 && obj.x >= teamAHoopXCoordinate && obj.x <= teamAHoopXCoordinate + 15){
+        changeBScore(1)
+        showWhoScored('B','red')
+        setTimeout(hideScore, 3000)
+    } else if (obj.y >= teamBHoopYCoordinate && obj.y <= teamBHoopYCoordinate + 15 && obj.x >= teamBHoopXCoordinate && obj.x <= teamBHoopXCoordinate + 15){
+        changeAScore(1)
+        showWhoScored('A', 'azure')
+        setTimeout(hideScore, 3000)
+    }
 });
 let obj = {
     x : 0,
@@ -195,6 +200,42 @@ window.addEventListener('mousemove', function(e){
     obj.x = e.x;
     obj.y = e.y
 })
-
-
+teamAScore.addEventListener('teamAScored', function(e){
+    teamAScore.textContent = e.detail.number;
+})
+function changeAScore(num){
+    let event = new CustomEvent('teamAScored', {
+        detail: {
+            number : +teamAScoreText + num
+        }
+    })
+teamAScore.dispatchEvent(event)
+}
+teamBScore.addEventListener('teamBScored', function(e){
+    teamBScore.textContent = e.detail.number;
+})
+function changeBScore(num){
+    let event = new CustomEvent('teamBScored', {
+        detail: {
+            number : +teamBScoreText + num
+        }
+    })
+teamBScore.dispatchEvent(event)
+}
+scoreboard.addEventListener('whoScored', function(e){
+    scoreboard.textContent = e.detail.text;
+    scoreboard.className = e.detail.las
+})
+function showWhoScored(lett, clas){
+    let event = new CustomEvent('whoScored', {
+        detail: {
+            text : `Team ${lett} score!`,
+            las : `${clas}`
+        }
+    })
+scoreboard.dispatchEvent(event)
+}
+function hideScore(){
+    scoreboard.setAttribute('class', 'none')
+}
 /* END TASK 3 */

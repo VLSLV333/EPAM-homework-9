@@ -63,7 +63,13 @@ body{
 /* START: Task 3 Styles */
 #task3{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#scores{
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
 }
 #court{
     width: 598px;
@@ -72,7 +78,6 @@ body{
     background-image: url(/assets/court2.png);
     background-size: contain;
     background-repeat: no-repeat;
-    position: absolute;
 }
 #ball{
     width: 40px;
@@ -85,19 +90,28 @@ body{
     left: calc(50% - 20px);
 }
 #teamA{
-    background-color: red;
     width: 15px;
     height: 15px;
     position: relative;
-    top: 114px;
+    top: 112px;
     left: 32px;
 }
 #teamB{
-    background-color: black;
     width: 15px;
     height: 15px;
     position: relative;
-    top: 100px;
-    left: 550px;
+    top: 97px;
+    left: 551px;
+}
+.none{
+    visibility: hidden;
+}
+.red{
+    display: block;
+    color:red;
+}
+.azure{
+    display: block;
+    color:blue;
 }
 /* END: Task 3 Styles */
